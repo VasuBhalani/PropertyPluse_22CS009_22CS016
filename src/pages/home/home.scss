@@ -1,0 +1,119 @@
+@import "../../responsive.scss";
+
+.homePage {
+  display: flex;
+  height: 100%;
+  font-family: 'Franklin Gothic', sans-serif;
+
+  .textContainer {
+    flex: 3;
+    .wrapper {
+      padding-right: 100px; // Adjust spacing for larger screens
+      height: 100%; // it cover entire textcontainer part
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 50px;// badhi item vachhe no gap h1, p, searchbox and box badhano
+
+      @include midscreen{
+        padding: 0px;
+      }
+
+      @include smallscreen{
+        justify-content:flex-start;
+      
+      }
+
+      .title {
+        font-size: 35px;
+
+        @include bigscreen{
+          font-size: 30px;
+        }
+      }
+      p{
+        font-size: 15px;
+        font-family: 'Lato', sans-serif; 
+
+      }
+
+      .boxes {
+        display: flex;
+        gap: 100px;
+        
+        @include smallscreen {
+            display: none; // Hide highlights on small screens
+        }
+
+        h1{
+          font-size:25px;
+
+          @include bigscreen{
+            font-size: 20px;
+          }
+        }
+        h2{
+          font-size: 18px;
+          font-family: 'Lato' sans-serif;
+          color: #5b5959; 
+          font-weight: 400;
+        }
+      }
+
+     
+    }
+  }
+
+  .imageContainer {
+    flex: 2.5;
+    position: relative;
+    display:flex;
+    align-items: center;
+
+    @include midscreen {
+      display: none; // Hide the image on mid-sized screens and below
+    }
+
+    img {
+      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-position: center;
+
+      @include bigscreen {
+        width: 100%;
+    }
+  }
+
+  @include smallscreen {
+    flex-direction: column; // Stack content vertically for small screens
+
+    .textContainer {
+      .wrapper {
+        gap: 20px; // Adjust spacing for small screens
+      }
+    }
+
+    .imageContainer {
+      display: none; // Hide the image on small screens
+    }
+
+    form {
+      flex-direction: column; // Arrange form inputs vertically
+      gap: 10px;
+
+      input,
+      button {
+        width: 100%; // Make inputs full-width
+      }
+    }
+  }
+}
+
+}

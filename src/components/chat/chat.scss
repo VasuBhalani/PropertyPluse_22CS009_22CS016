@@ -1,0 +1,193 @@
+
+.chat {
+    padding: 20px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 20px;
+
+    .messages {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: hidden; /* Initially hide the scrollbar */
+        scroll-behavior:smooth; /* Enable smooth scrolling */
+
+        &:hover {
+            overflow-y: scroll; /* Show the scrollbar on hover */
+        }
+
+        /* Scrollbar styling */
+        &::-webkit-scrollbar {
+            width: 8px; /* Adjust the width for vertical scrollbar */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #8f8f8f; /* Color of the scrollbar thumb */
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #201f1f; /* Background of the scrollbar track */
+        }
+
+        .msg {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            span {
+                font-weight: bold;
+            }
+
+            p {
+                max-width: 500px;
+                overflow-wrap: break-word;
+            }
+        }
+    }
+    .chatBox {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid black;
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #6ee197;
+            padding: 10px;
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                p {
+                    font-weight: 500;
+                }
+            }
+            .close {
+                cursor: pointer;
+                font-weight: bold;
+            }
+        }
+        .center {
+            height: 350px;
+            overflow-y: scroll;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-x: hidden;
+            
+            overflow-y: hidden; /* Initially hide the scrollbar */
+            scroll-behavior:smooth; /* Enable smooth scrolling */
+    
+            &:hover {
+                overflow-y: scroll; /* Show the scrollbar on hover */
+            }
+    
+            /* Scrollbar styling */
+            &::-webkit-scrollbar {
+                width: 8px; /* Adjust the width for vertical scrollbar */
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                background-color: #8f8f8f; /* Color of the scrollbar thumb */
+                border-radius: 5px;
+            }
+    
+            &::-webkit-scrollbar-track {
+                background-color: #f1f1f1; /* Background of the scrollbar track */
+            }
+    
+
+            .chatMessages {
+                width: 50%;
+                p {
+                    background-color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    max-width: 500px;
+                    overflow-wrap: break-word;
+                }
+                span {
+                    font-weight: bold;
+                    font-size: 12px;
+                    color: gray;
+                }
+                &.own {
+                    align-self: flex-end;
+
+                    p {
+                        background-color: #d9fdd3;
+                        color: black;
+                    }
+                }
+            }
+        }
+        .bottom {
+            display: flex;
+            height: 60px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 10px;
+            border-top: 1px solid #f0f0f0;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+
+            textarea {
+                flex: 3;
+                height: 100%;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                resize: none;
+                font-size: 15px;
+                padding: 5px 10px;
+                border-radius: 20px;
+                background-color: #f0f0f0;
+                margin-right: 10px;
+
+                &::placeholder {
+                    font-style: italic;
+                    color: #888; /* Placeholder color similar to WhatsApp */
+                }
+            }
+            button {
+                flex: 1;
+                height: 100%;
+                background-color: #6ee197;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+            }
+        }
+    }
+}

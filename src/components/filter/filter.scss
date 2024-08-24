@@ -1,0 +1,63 @@
+.filter{
+  font-family: 'Franklin Gothic', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 10px;
+  
+  h2{
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  
+    .item
+    {
+      display: flex;
+      flex-direction: column;
+      gap: 2px; // gap between label and input
+    
+      label
+      {
+        font-size: 15px;
+      }
+      
+        input,select{
+          
+        width:100px;
+        padding:10px;
+        border:2px solid #e0e0e0;
+        border-radius: 5px;
+        
+       
+      }
+    }
+    .top{
+      input{
+      width:100%;
+      } 
+    }
+
+    .bottom{
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      
+      button{
+        width:100px;
+        padding:8px;
+        background-color: #fece51;
+        border:none;
+        color: #fff;
+        cursor: pointer;
+        
+         
+       img{
+         width: 24px;
+         height: 24px;
+       } 
+      }
+    }
+
+}
+

@@ -1,0 +1,182 @@
+@import "../../responsive.scss";
+
+a {
+  color: black;
+  font-size: 18px;
+}
+
+nav {
+
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Franklin Gothic', sans-serif;
+  align-items: center;
+
+  // hover thi font size vadhe te
+  a {
+    transition: all 0.5s ease;
+
+    @include smallscreen {
+      display: none;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .leftnav {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    height: 100%;
+
+    // background-color: antiquewhite;
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      img {
+        width: 55px;
+      }
+
+      span {
+        @include midscreen {
+          display: none;
+        }
+
+        @include smallscreen {
+          display: initial;
+        }
+      }
+    }
+  }
+
+  .rightnav {
+    flex: 2.5;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height:100%;
+
+    @include midscreen {
+      background-color:transparent;
+    }
+    @include bigscreen {
+      background-color:transparent;
+    }
+    // background-image: url('sky.png');  
+    
+    // background-color: #fcf5f3;
+    
+     .user{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+
+      span{
+        font-size:14px;
+        @include smallscreen {
+          display: none;
+        }
+      } 
+      a{
+        padding:12px 24px; 
+        color: black;
+        font-size: 18px;
+        border:none;
+        background-color: #fece51;
+        position: relative;
+
+        .notification{
+          background-color: red;
+          top:-8px;
+          right:-5px;
+          color: white;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          position:absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+        }
+      }
+     }
+
+
+    // space between the button 
+    a {
+      padding: 10px 24px;
+      margin: 20px;
+      font-size: medium;
+      border-radius: 10px;
+    }
+
+    .login,.signup {
+      background-color: #fece51;
+    }
+
+    .menuIcon {
+      display: none;
+      // icon black baground ma pan dekhay 
+      z-index: 999;
+
+      img {
+        width: 36px;
+        border-radius: 30%;
+        cursor: pointer;
+      }
+
+      @include smallscreen {
+        display: inline;
+      }
+    }
+
+    .menu {
+      position: absolute;
+      
+      top: 0; // it will start from top
+      right: -50%; // it is defalut behing screen right side 
+      
+      background-color: black;
+      
+      height: 100vh;
+      width: 50%;
+
+      transition: all 1s ease;
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: x-large;
+
+      &.active {
+        right: 0;
+      }
+
+      @include smallscreen {
+        a {
+          color: #fece51;
+          display: initial;
+        }
+      }
+    }
+  }
+}

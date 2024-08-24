@@ -1,0 +1,137 @@
+@import '../../responsive.scss';
+
+.profilePage {
+    display: flex;
+    height: 100%;
+    font-family: 'Franklin Gothic', sans-serif;
+
+    @include midscreen {
+        flex-direction: column;
+        height: auto; /* Allows flexibility for mid screens */
+        overflow: hidden; /* Prevents unwanted scrolling */
+    }
+
+    .details {
+        flex: 3;
+        padding-left: 12px;
+        overflow-y: hidden; /* Initially hide the scrollbar */
+        scroll-behavior: smooth; /* Enable smooth scrolling */
+        
+        @include midscreen {
+            flex: none;
+            height: auto; /* Adjusts height dynamically */
+            padding-right: 0; /* Ensure padding is consistent for mid screens */
+            overflow-y: hidden; /* Prevents default scrolling */
+        }
+
+        &:hover {
+            overflow-y: scroll; /* Show the scrollbar on hover */
+        }
+
+        /* Scrollbar styling */
+        &::-webkit-scrollbar {
+            width: 8px; /* Adjust the width for vertical scrollbar */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #8f8f8f; /* Color of the scrollbar thumb */
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #f1f1f1; /* Background of the scrollbar track */
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-right: 50px;
+            gap: 20px;
+
+            @include midscreen {
+                padding-right: 0; /* Remove extra padding for mid screens */
+                padding-bottom: 20px; /* Adds spacing at the bottom */
+            }
+
+            .title {
+                display: flex;
+                justify-content: space-between;
+
+                h1 {
+                    font-weight: lighter;
+                    font-size: 30px;
+                }
+
+                button {
+                    background-color: #fece51;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+
+            .userinfo {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                width: max-content;
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+                display: flex;
+                align-items: center;
+                gap: 15px;
+
+                img {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .infoText {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    .infoItem {
+                        display: flex;
+                        gap: 5px; /* Space between label and value */
+                        font-size: 16px;
+
+                        .label {
+                            font-weight: bold;
+                            color: #333; /* Dark color for labels */
+                        }
+
+                        .value {
+                            font-weight: normal;
+                            color: #777; /* Light color for values */
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .chatContainer {
+        flex: 2;
+        background-color: #fcf5f3;
+        height: 100%;
+
+        @include midscreen {
+            flex: none;
+            height: auto; /* Adjusts height dynamically */
+            overflow-y: hidden; /* Prevents default scrolling */
+        }
+
+        .wrapper {
+            padding: 0 20px;
+            height: 100%;
+
+            @include midscreen {
+                height: auto; /* Adjusts height for mid screens */
+                padding-bottom: 20px; /* Adds spacing at the bottom */
+            }
+        }
+    }
+}
