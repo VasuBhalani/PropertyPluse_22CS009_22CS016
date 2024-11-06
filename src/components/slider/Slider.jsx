@@ -2,6 +2,9 @@ import './slider.scss';
 import { useState } from 'react';
 
 function Slider({ images }) {
+  
+  // console.log("images = ",images.length);
+
   const [imageIndex, setImageIndex] = useState(null);
 
   const handlePrevious = () => {

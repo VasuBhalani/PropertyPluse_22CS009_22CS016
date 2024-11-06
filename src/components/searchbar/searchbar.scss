@@ -32,7 +32,7 @@
 }
 
 form {
-    border: 1px solid grey; 
+    // border: 1px solid grey; 
     display: flex;
     justify-content: space-between;
     height: 50px;
@@ -43,7 +43,7 @@ form {
     } 
    
     input {
-        border: none;  
+        // border: none;  
         padding: 0px 10px;
         font-size: 12px;
         flex: 1;
@@ -59,11 +59,12 @@ form {
         cursor: pointer;
         background-color: #fece51;
         border: 1px solid #fece51;
-
         display: flex;
         align-items: center;
         justify-content: center;
         flex: 1;
+        height: 100%;
+        width:70px;
 
         @include smallscreen {
             padding: 10px;

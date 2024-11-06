@@ -1,97 +1,111 @@
+import { AuthContext } from '../../../context/AuthContext.jsx';
+import { SocketContext } from '../../../context/SocketContext.jsx';
+import apiRequest from '../../lib/apiRequest.js';
 import './chat.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import  {format}  from 'timeago.js';
 
-function Chat() {
-  const [msg, setMsg] = useState(' ');
-   return(
+function Chat({chats}) {
+  console.log(chats); 
+  const [msg, setMsg] = useState(null);
+  const {currentUser} = useContext(AuthContext);
+  const {socket} = useContext(SocketContext);
+
+  const handlechatBox = async (id,receiver) => {
+   try{
+      const res = await apiRequest("/chats/"+id);
+      console.log(res.data);
+      setMsg({...res.data,receiver}); 
+   }catch(err){
+      console.log(err);
+   }  
+  }
+
+
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const text = formData.get("text");
+    
+    if(!text) return;
+
+    try{
+         
+        const res = await apiRequest.post("/messages/" + msg.id ,{text});
+        setMsg(prev =>({...prev,messages:[...prev.messages,res.data]}));
+        e.target.reset();
+    }catch(err){
+        console.log(err);}
+
+  }
+
+  const testSocket = () => {
+    socket.emit("test", "Hello from client" );
+  };
+
+
+  return(
       <div className="chat">
         <div className="messages">
+         <button onClick={testSocket}>test me</button>
             <h2>Message</h2>
-         <div className="msg">
-            <img src='https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt="user" />
-            <span>John Deo</span>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-         </div>
-         <div className="msg">
-            <img src='https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt="user" />
-            <span>John Deo</span>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-         </div>
-         <div className="msg">
-            <img src='https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt="user" />
-            <span>John Deo</span>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-         </div>
-         <div className="msg">
-            <img src='https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt="user" />
-            <span>John Deo</span>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-         </div>
-         <div className="msg">
-            <img src='https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt="user" />
-            <span>John Deo</span>
-            <p>
-                Lorem ipsum dolor sit amet.
-            </p>
-         </div>
+         {chats.map((chat) => (
+            <div className="msg" key={chat.id} 
+            
+            style={{
+                backgroundColor: chat.seenBy.includes(currentUser.id)
+                 ? "white" 
+                 :  "#dcf8c6",
+            }}
+            onClick={()=>handlechatBox(chat.id,chat.receiver)}
+            >
+               <img src={chat.receiver.avtar || "/noavatar.jpg"} alt="user" />
+               <span>{chat.receiver.username}</span>
+               <p>
+                  {chat.lastmessage}
+               </p>
+            </div>
+         ))}   
         </div>
         
         {msg && <div className="chatBox">
          <div className="top">
+            {console.log(msg)}
             <div className="user">
-               <img src='https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt="user" />
-               <p>John Deo</p>
+               <img src={msg.receiver.avtar || "/noavatar.jpg"} alt="user" />
+               <p>{msg.receiver.username}</p>
             </div>
             <span className='close' onClick={() => setMsg(null)}>X</span>
          </div>
 
          <div className="center">
-            <div className="chatMessages">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
-            <div className="chatMessages">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
-            <div className="chatMessages own">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
-            <div className="chatMessages own">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
-            <div className="chatMessages">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
-            <div className="chatMessages own">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
-            <div className="chatMessages">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
-            <div className="chatMessages own">
-               <p>Lorem ipsum dolor sit amet.</p>
-               <span>1 hour ago</span>
-            </div>
+         {
+         msg.message.map((message) => {
+            const isSender = message.userId === currentUser.id;
+            return (
+               <div
+               className={`chatMessages ${isSender ? 'sent' : 'received'}`} // Conditional class
+               key={message.id}
+               style={{
+                  alignSelf: isSender ? "flex-end" : "flex-start",
+                  textAlign: isSender ? "right" : "left",
+               }}
+               >
+               <p>{message.text}</p>
+               <span>{format(message.createdAt)}</span>
+               </div>
+            );
+         })
+         }
+
          </div>
-         <div className="bottom">
-            <textarea className="input" placeholder="Type a message"></textarea>
+         <form onSubmit={handleSubmit} className="bottom">
+            <textarea className="input" placeholder="Type a message" name="text"></textarea>
             <button className="send">Send</button>
-         </div>
-        </div>}
+         </form>
+        </div>
+        }
      
       </div>
     

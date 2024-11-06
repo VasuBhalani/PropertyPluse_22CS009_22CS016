@@ -1,137 +1,127 @@
 @import '../../responsive.scss';
-.singlepage {
+.singlePage {
   display: flex;
-  height:100%;
+  height: 100%;
   font-family: 'Franklin Gothic', sans-serif;
 
-  @include midscreen{
+
+  @include midscreen {
     flex-direction: column;
+    overflow: scroll;
   }
+
   .details {
     flex: 3;
     height: 100%;
-    overflow-y: auto;
-    padding-right: 50px;
+    overflow-y: scroll;
 
-    @include midscreen{
+    @include midscreen {
       flex: none;
-      height:max-content;
+      height: max-content;
       margin-bottom: 50px;
     }
 
     .wrapper {
-      .info {
-        margin-top: 30px;
+      padding-right: 50px;
 
+      @include bigscreen {
+        padding-right: 20px;
+      }
+      @include midscreen {
+        padding-right: 0px;
+      }
+
+      .info {
+        margin-top: 50px;
         .top {
           display: flex;
           justify-content: space-between;
+
+          @include smallscreen {
+            flex-direction: column;
+            gap: 20px;
+          }
 
           .post {
             display: flex;
             flex-direction: column;
             gap: 20px;
-
             h1 {
-              font-size: 30px;
-              font-weight: 200;
+              font-weight: 400;
             }
-
             .address {
               display: flex;
               gap: 5px;
               align-items: center;
-              color: rgb(81, 82, 82);
+              color: #888;
+              font-size: 14px;
 
               img {
-                height: 16px;
                 width: 16px;
+                height: 16px;
               }
             }
-
             .price {
-              font-size: 20px;
-              font-weight: 50;
-              background-color: antiquewhite;
-              border-radius: 5px;
               padding: 5px;
+              background-color: rgba(254, 205, 81, 0.438);
+              border-radius: 5px;
               width: max-content;
+              font-size: 20px;
+              font-weight: 300;
             }
           }
-
           .user {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 0px 40px;
+            justify-content: center;
             gap: 20px;
+            padding: 0px 50px;
             border-radius: 10px;
-            background-color: antiquewhite;
+            background-color: rgba(254, 205, 81, 0.209);
+            font-weight: 600;
+
+            @include smallscreen {
+              padding: 20px 50px;
+            }
 
             img {
-              height: 50px;
               width: 50px;
+              height: 50px;
               border-radius: 50%;
               object-fit: cover;
             }
           }
         }
-
         .bottom {
-          color: #5b5b5b;
-          margin-top: 20px;
-          font-size: 15px;
-          font-weight: 300;
+          margin-top: 50px;
+          color: #555;
           line-height: 20px;
         }
       }
     }
   }
-
   .features {
     flex: 2;
     background-color: #fcf5f3;
     height: 100%;
-    overflow: hidden; /* Hide scrollbar by default */
-    position: relative;
+    overflow-y: scroll;
 
-    @include midscreen{
+    @include midscreen {
       flex: none;
-      height:max-content;
-      overflow: hidden;
-    }
-    
-    &::-webkit-scrollbar {
-      width: 8px;
-  /* Adjust the width for vertical scrollbar */
-  }
-
-  &::-webkit-scrollbar-thumb {
-      background-color: #8f8f8f; /* Color of the scrollbar thumb */
-      border-radius: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-      background-color: #f1f1f1; /* Background of the scrollbar track */
-  }
-
-    &:hover {
-      overflow: auto; /* Show scrollbar on hover */
-    }
-    
-
-    p {
-      font-size: 12px;
-      color: #5b5b5b;
+      height: max-content;
+      margin-bottom: 50px;
     }
 
-   
     .wrapper {
-      padding: 0 20px;
+      padding: 0px 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
+
+      @include midscreen {
+        padding: 20px;
+      }
 
       img {
         width: 24px;
@@ -139,32 +129,31 @@
       }
 
       .title {
-        font-size: 18px;
         font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
       }
 
       .feature {
         display: flex;
-        gap: 10px;
         align-items: center;
-        font-size: 14px;
-        color: black;
+        gap: 10px;
 
         img {
           background-color: rgba(254, 205, 81, 0.209);
-          border-radius: 2px;
         }
 
         .featureText {
           span {
             font-weight: bold;
           }
-
-          
+          p {
+            font-size: 14px;
+          }
         }
       }
 
-      .listvertical {
+      .listVertical {
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -172,32 +161,28 @@
         background-color: white;
         border-radius: 10px;
       }
-
-      .listhorizontal {
+      .listHorizontal {
         display: flex;
-        gap: 20px;
-        padding: 20px 10px;
         justify-content: space-between;
+        padding: 20px 10px;
         background-color: white;
         border-radius: 10px;
       }
 
-      .size {
+      .sizes {
         display: flex;
-        gap: 10px;
         justify-content: space-between;
-        align-items: center;
 
         @include bigscreen{
-          font-size: 10px;
+          font-size: 12px;
         }
 
-        .sizes {
+        .size {
           display: flex;
-          gap: 10px;
           align-items: center;
-          padding: 10px;
+          gap: 10px;
           background-color: white;
+          padding: 10px;
           border-radius: 5px;
         }
       }
@@ -205,28 +190,26 @@
       .mapContainer {
         width: 100%;
         height: 200px;
-        border-radius: 10px;
       }
 
       .buttons {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;  
-        img{
-          width: 16px;
-          height: 16px;
-        }
-        
+
         button {
-          background-color: white;
-          padding: 10px;
+          padding: 20px;
           display: flex;
           align-items: center;
           gap: 5px;
+          background-color: white;
           border: 1px solid #fece51;
           border-radius: 5px;
           cursor: pointer;
-          color: black;
+
+          img {
+            width: 16px;
+            height: 16px;
+          }
         }
       }
     }

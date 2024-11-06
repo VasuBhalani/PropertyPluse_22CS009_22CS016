@@ -1,16 +1,15 @@
 import './list.scss';
 import Card from '../card/Card';
-import {listData} from '../../lib/dumy';
 
-function List()
-{
-    return(
-       <div className="list">
-        {listData.map((item) => (
-            <Card item={item} key={item.id}/>
-        ))}
-       </div>
-    );
+function List({ posts }) {
+  return (
+    <div className='list'>
+      {posts.map(item => {
+        // console.log("details", item.title,item);  // Log item title
+        return <Card key={item.id} item={item} />;  // Render Card
+      })}
+    </div>
+  );
 }
 
 export default List;

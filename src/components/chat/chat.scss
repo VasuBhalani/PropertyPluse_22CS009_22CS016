@@ -93,59 +93,69 @@
         }
         .center {
             height: 350px;
-            overflow-y: scroll;
+            overflow-y: hidden;
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
             overflow-x: hidden;
-            
-            overflow-y: hidden; /* Initially hide the scrollbar */
-            scroll-behavior:smooth; /* Enable smooth scrolling */
-    
+            scroll-behavior: smooth;
+        
             &:hover {
-                overflow-y: scroll; /* Show the scrollbar on hover */
+                overflow-y: scroll;
             }
-    
-            /* Scrollbar styling */
+        
             &::-webkit-scrollbar {
-                width: 8px; /* Adjust the width for vertical scrollbar */
+                width: 8px;
             }
-    
+        
             &::-webkit-scrollbar-thumb {
-                background-color: #8f8f8f; /* Color of the scrollbar thumb */
+                background-color: #8f8f8f;
                 border-radius: 5px;
             }
-    
+        
             &::-webkit-scrollbar-track {
-                background-color: #f1f1f1; /* Background of the scrollbar track */
+                background-color: #f1f1f1;
             }
-    
-
+        
             .chatMessages {
-                width: 50%;
-                p {
-                    background-color: white;
-                    padding: 10px;
-                    border-radius: 5px;
-                    max-width: 500px;
-                    overflow-wrap: break-word;
+                max-width: 60%;
+                padding: 10px;
+                margin: 5px;
+                color: white;
+                display: inline-block;
+                border-radius: 8px;
+        
+                /* Sent messages (right side) */
+                &.sent {
+                    background-color: #dcf8c6; /* WhatsApp's light green for sender messages */
+                    color: black;
+                    align-self: flex-end;
+                    border-radius: 8px 8px 0 8px;
                 }
+        
+                /* Received messages (left side) */
+                &.received {
+                    background-color: #f1f0f0; /* WhatsApp's light gray for receiver messages */
+                    color: black;
+                    align-self: flex-start;
+                    border-radius: 8px 8px 8px 0;
+                }
+        
+                p {
+                    overflow-wrap: break-word;
+                    margin: 0;
+                }
+        
                 span {
-                    font-weight: bold;
                     font-size: 12px;
                     color: gray;
-                }
-                &.own {
-                    align-self: flex-end;
-
-                    p {
-                        background-color: #d9fdd3;
-                        color: black;
-                    }
+                    display: block;
+                    margin-top: 5px;
                 }
             }
         }
+        
         .bottom {
             display: flex;
             height: 60px;

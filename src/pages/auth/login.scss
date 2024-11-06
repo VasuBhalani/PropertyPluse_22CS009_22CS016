@@ -1,0 +1,176 @@
+.loginPage {
+  display: flex;
+  font-family: 'Franklin Gothic', sans-serif;
+  height: 100vh;
+
+  .formContainer {
+    flex: 3;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    .loginContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 20px;
+
+      h2 {
+        font-size: 36px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+
+        .input-field {
+          position: relative;
+          width: 100%;
+          max-width: 300px;
+
+          img{
+            position: absolute; 
+            width:20px;
+            height: 20px;
+            margin-left: 10px;
+            margin-top: 10px;
+          }
+
+          .input-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #fece51;
+          }
+
+          input {
+            width: 100%;
+            height: 45px;
+            padding-left: 40px; /* Space for the icon */
+            border-radius: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            outline: none;
+            transition: border-color 0.3s ease;
+            background-color: #f9f9f9; /* Light background for input fields */
+
+            &:focus {
+              border-color: #fece51;
+            }
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        max-width: 300px;
+        height: 45px;
+        border: none;
+        border-radius: 8px;
+        background-color: #fece51;
+        color: #333; /* Darker text for better contrast */
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background-color: #f5a623;
+        }
+      }
+
+      // Stylish Error Message
+      .error {
+        background-color: #f8d7da; /* Light red background */
+        color: #721c24; /* Dark red text */
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        max-width: 300px;
+        width: 100%;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      .success {
+        background-color: #d4edda; /* Light green background */
+        color: #155724; /* Dark green text */
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        max-width: 300px;
+        width: 100%;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .links {
+        margin-top: 1rem;
+        text-align: center;
+
+        a {
+          display: block;
+          margin: 0.5rem 0;
+          color: #fece51;
+          font-size: 15px;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          font-weight: 500;
+
+          &:hover {
+            color: #f5a623;
+          }
+        }
+      }
+    }
+  }
+
+  .imageContainer {
+    flex: 2.5;
+    height: 100%;
+    margin-left: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #c25e42;
+    border-radius: 12px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

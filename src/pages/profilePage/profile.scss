@@ -10,7 +10,7 @@
         height: auto; /* Allows flexibility for mid screens */
         overflow: hidden; /* Prevents unwanted scrolling */
     }
-
+    
     .details {
         flex: 3;
         padding-left: 12px;
@@ -109,6 +109,14 @@
                         }
                     }
                 }
+            }
+            button {
+                background-color: #fece51;
+                width: max-content;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
             }
         }
     }
